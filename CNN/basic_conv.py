@@ -6,7 +6,7 @@ import torch.nn.functional as F
 from PIL import Image
 import matplotlib.pyplot as plt
 
-im = Image.open('./cat.png').convert('L')  # 读入一张灰度图的图片
+im = Image.open('data/cat.png').convert('L')  # 读入一张灰度图的图片
 im = np.array(im, dtype='float32')  # 将其转换为一个矩阵
 print('im----->1', im)
 plt.imshow(im.astype('uint8'), cmap='gray')
