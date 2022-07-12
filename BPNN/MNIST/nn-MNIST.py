@@ -30,8 +30,8 @@ def data_tf(x):
 
 
 # 下载训练集 MINIST 手写数字训练集
-train_dataset = datasets.MNIST(root='./data', train=True, transform=data_tf, download=True)
-test_dataset = datasets.MNIST(root='./data', train=False, transform=data_tf)
+train_dataset = datasets.MNIST(root='../data', train=True, transform=data_tf, download=True)
+test_dataset = datasets.MNIST(root='../data', train=False, transform=data_tf)
 
 # 使用 pytorch 自带的 DataLoader 定义一个数据迭代器
 train_data = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)

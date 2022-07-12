@@ -30,8 +30,8 @@ def data_tf(x):
     return x
 
 
-train_set = mnist.MNIST('./data', train=True, transform=data_tf, download=True)  # 重新载入数据集，申明定义的数据变换
-test_set = mnist.MNIST('./data', train=False, transform=data_tf, download=True)
+train_set = mnist.MNIST('../data', train=True, transform=data_tf, download=True)  # 重新载入数据集，申明定义的数据变换
+test_set = mnist.MNIST('../data', train=False, transform=data_tf, download=True)
 # a, a_label = train_set[0]
 # print(a.shape)
 # print(a_label)
