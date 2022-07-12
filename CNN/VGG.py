@@ -9,7 +9,6 @@ from torchvision.datasets import CIFAR10
 from utils import train
 
 
-
 def vgg_block(num_convs, in_channels, out_channels):
     net = [nn.Conv2d(in_channels, out_channels, kernel_size=3, padding=1), nn.ReLU(True)]  # 定义第一层
     for i in range(num_convs - 1):  # 定义后面的很多层
@@ -47,7 +46,8 @@ vgg_net = vgg_stack(
 # 我们可以看到网络结构中有个 5 个 最大池化，说明图片的大小会减少 5 倍，
 test_x = Variable(torch.zeros(1, 3, 256, 256))
 test_y = vgg_net(test_x)
-print(test_y.shape)# 可以看到图片减小了32倍
+print(test_y.shape)  # 可以看到图片减小了32倍
+
 
 # 2、添加全连接层**********************************************
 class vgg(nn.Module):
@@ -70,6 +70,7 @@ class vgg(nn.Module):
 net = vgg()
 optimizer = torch.optim.SGD(net.parameters(), lr=1e-1)
 criterion = nn.CrossEntropyLoss()
+
 
 # 3、训练模型********************************************
 # ①获取数据集
