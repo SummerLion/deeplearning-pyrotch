@@ -14,6 +14,7 @@ max_value = np.max(dataset)
 min_value = np.min(dataset)
 scalar = max_value - min_value
 dataset = list(map(lambda x: x / scalar, dataset))
+# print('dataset--->',dataset)
 
 def create_dataset(dataset, look_back=2):
     dataX, dataY = [], []
@@ -25,7 +26,8 @@ def create_dataset(dataset, look_back=2):
 
 # 创建好输入输出
 data_X, data_Y = create_dataset(dataset)
-
+# print('data_X--->',data_X)
+# print('data_Y--->',data_Y)
 # 划分训练集和测试集，70% 作为训练集
 train_size = int(len(data_X) * 0.7)
 test_size = len(data_X) - train_size
@@ -33,17 +35,24 @@ train_X = data_X[:train_size]
 train_Y = data_Y[:train_size]
 test_X = data_X[train_size:]
 test_Y = data_Y[train_size:]
+print('train_X',train_X)
+print('train_X1.shape',train_X.shape)
+
 
 import torch
-
+# 最后，我们需要将数据改变一下形状，因为 RNN 读入的数据维度是 (seq, batch, feature)，所以要重新改变一下数据的维度，
+# 这里只有一个序列，所以 batch 是 1，而输入的 feature 就是我们希望依据的几个月份，这里我们定的是两个月份，所以 feature 就是 2.
 train_X = train_X.reshape(-1, 1, 2)
 train_Y = train_Y.reshape(-1, 1, 1)
 test_X = test_X.reshape(-1, 1, 2)
+# print('train_X',train_X)
+print('train_X2.shape',train_X.shape) #train_X.shape (99, 1, 2)
 
 train_x = torch.from_numpy(train_X)
 train_y = torch.from_numpy(train_Y)
 test_x = torch.from_numpy(test_X)
-
+# print('train_x',train_x)
+print('train_x3.shape',train_x.shape) #train_x.shape torch.Size([99, 1, 2])
 
 from torch import nn
 from torch.autograd import Variable
