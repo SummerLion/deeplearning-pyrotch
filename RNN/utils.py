@@ -14,8 +14,6 @@ def get_acc(output, label):
 
 
 def train(net, train_data, valid_data, num_epochs, optimizer, criterion):
-    if torch.cuda.is_available():
-        net = net.cuda()
     prev_time = datetime.now()
     for epoch in range(num_epochs):
         train_loss = 0
